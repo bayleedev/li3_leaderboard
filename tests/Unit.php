@@ -2,7 +2,7 @@
 
 namespace li3_leaderboard\tests;
 
-class Unit extends \app\extensions\test\Unit {
+class Unit extends \lithium\test\Unit {
 
 	/**
 	 * Will return true if $count and count($arr) are equal
