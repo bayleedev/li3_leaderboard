@@ -140,7 +140,7 @@ class StatsPresenter extends \lithium\data\Model {
 		$leaderBoard['total'] = self::_totalTests($files);
 		$leaderBoard['data'] = self::_getTotalByPerson($blames, $leaderBoard['total']);
 
-		$leaderBoard['data'] = self::_sortTotals($leaderBoard['data']);
+		self::_sortTotals($leaderBoard['data']);
 
 		return $leaderBoard;
 
