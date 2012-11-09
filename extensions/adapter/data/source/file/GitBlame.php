@@ -84,7 +84,7 @@ class GitBlame extends \lithium\data\source\Mock {
 
 			// Filter and split data
 			$lines = explode("\n", $response);
-			$pattern = '/^(\w+)\s\(([^0-9]+)([\-:0-9 ]+)\s(\d+)\)(.*)$/'; // // 'f4d09fb8 (Nate Abele          2010-01-06 14:00:27 -0500   1) <?php'
+			$pattern = '/^(\w+)\s+\(([^0-9]+)\s+([\-:0-9 ]+)\s+(\d+)\)(.*)$/'; // // 'f4d09fb8 (Nate Abele          2010-01-06 14:00:27 -0500   1) <?php'
 			$fields = array(
 				'hash' => 1, // hash is the 1th item in $matches
 				'name' => 2, // ...
