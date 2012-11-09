@@ -9,6 +9,7 @@ class StatsPresenter extends \lithium\data\Model {
 
 	/**
 	 * Finds the specific files and lines that we determine to be tests
+	 * 
 	 * @param  array $options
 	 * @return array A multidimensional array.
 	 */
@@ -50,6 +51,12 @@ class StatsPresenter extends \lithium\data\Model {
 		return $fileInfo;
 	}
 
+	/**
+	 * Given an multidimensional array it'll find the blame for specific files and lines
+	 * 
+	 * @param  array $files The result of self::_findLines
+	 * @return array
+	 */
 	static public function _findBlames($files) {
 		$blames = array();
 		foreach($files as $file) {
@@ -63,6 +70,12 @@ class StatsPresenter extends \lithium\data\Model {
 		return $blames;
 	}
 
+	/**
+	 * Will give you a count of written tests.
+	 * 
+	 * @param  array $files The result of self::_findLines
+	 * @return int
+	 */
 	static public function _totalTests($files) {
 		$total = 0;
 		foreach($files as $file) {
@@ -71,6 +84,13 @@ class StatsPresenter extends \lithium\data\Model {
 		return $total;
 	}
 
+	/**
+	 * Will aggregate the data and return a count and percent for each user.
+	 * 
+	 * @param  array $blames result of self::_findBlames
+	 * @param  int $total  result of self::_totalTests
+	 * @return array
+	 */
 	static public function _getTotalByPerson($blames, $total) {
 		$totals = array();
 		foreach($blames as $blameLines) { // iterate recordsets
@@ -90,7 +110,13 @@ class StatsPresenter extends \lithium\data\Model {
 		return $totals;
 	}
 
-	static public function find($count, array $options) {
+	/**
+	 * Entry point for 
+	 * @param  [type] $type    [description]
+	 * @param  array  $options [description]
+	 * @return [type]          [description]
+	 */
+	public static function find($type, array $options = array()) {
 
 		$leaderBoard = array();
 
