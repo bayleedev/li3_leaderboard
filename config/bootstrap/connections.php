@@ -55,3 +55,26 @@ Connections::add('GitBlame', array(
 		'type'    => 'file',
 	),
 ));
+
+Connections::add('Filesystem', array(
+	'development' => array(
+		'adapter' => 'Filesystem',
+		'type'    => 'file',
+		'base'    => __DIR__,
+	),
+	'test' => array(
+		'adapter' => 'Filesystem',
+		'type'    => 'file',
+		'base'    => __DIR__,
+	),
+	'staging' => array(
+		'adapter' => 'Filesystem',
+		'type'    => 'file',
+		'base'    => __DIR__,
+	),
+	'production' => array(
+		'adapter' => 'Filesystem',
+		'type'    => 'file',
+		'base'    => __DIR__,
+	),
+));
