@@ -11,7 +11,5 @@ before_install:
   - cd framework
   - git submodule update --init --recursive
   - cd app/libraries/li3_leaderboard
-  - cp config/connections.template.php ../../config/bootstrap/connections.php
-  - cp config/libraries.template.php ../../config/bootstrap/libraries.php
 
 script: ../../../libraries/lithium/console/li3 test tests
