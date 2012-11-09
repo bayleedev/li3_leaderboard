@@ -57,9 +57,9 @@ class GitBlame extends \lithium\data\source\Mock {
 			}
 
 			// Test if git exists and we are in a repo
-			$command = 'cd ' . $info['dirname'] . '; git rev-parse --git-dir;';
+			$command = 'cd ' . $info['dirname'] . '; git rev-parse --git-dir 2>&1;';
 			$response = shell_exec($command);
-			if(is_null($response)) {
+			if(preg_match('/Not a git repository/', $response) === 1) {
 				throw new Exception('GIT not installed, or not a GIT repo: ' . $command);
 			}
 
