@@ -57,3 +57,6 @@ To view the results simply view:
 ~~~ bash
 localhost/testLeaderboard
 ~~~~
+
+## Screenshot
+![Leaderboard](http://i49.tinypic.com/2n6ad5s.png)
