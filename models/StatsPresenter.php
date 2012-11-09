@@ -107,6 +107,9 @@ class StatsPresenter extends \lithium\data\Model {
 				'percent' => round(($count/$total)*100, 1),
 			);
 		}
+		uasort($totals, function($el, $el2) {
+			return strnatcmp($el2['count'], $el['count']);
+		});
 		return $totals;
 	}
 
@@ -128,10 +131,6 @@ class StatsPresenter extends \lithium\data\Model {
 
 		$leaderBoard['total'] = self::_totalTests($files);
 		$leaderBoard['data'] = self::_getTotalByPerson($blames, $leaderBoard['total']);
-
-		uasort($leaderBoard['data'], function($el, $el2) {
-			return strcmp($el['count'], $el2['count']);
-		});
 
 		return $leaderBoard;
 
