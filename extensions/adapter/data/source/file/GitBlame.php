@@ -60,7 +60,7 @@ class GitBlame extends \lithium\data\source\Mock {
 			$command = 'cd ' . $info['dirname'] . '; git rev-parse --git-dir;';
 			$response = shell_exec($command);
 			if(is_null($response)) {
-				throw new Exception('GIT not installed, or not a GIT repo.');
+				throw new Exception('GIT not installed, or not a GIT repo: ' . $command);
 			}
 
 			// Get the GIT Blame
