@@ -115,11 +115,11 @@ class GitBlame extends \lithium\data\source\Mock {
 				if(!is_array($groupBy)) {
 					$groupBy = array($groupBy);
 				}
-				$_this->group_by_($lines, function($el) use(&$groupBy, &$hashTable) {
+				$_this->group_by_($lines, function($key, $el) use(&$groupBy, &$hashTable) {
 					// Create hash
 					$hash = null;
 					foreach($groupBy as $item) {
-						$hash .= $el[$groupBy];
+						$hash .= $el[$item];
 					}
 					$hash = md5($hash);
 					// Find hash id for prettier keys
