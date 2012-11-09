@@ -1,5 +1,8 @@
 # Lithium Leaderboard
+
 A leaderboard to show off which developers are creating unit tests
+
+[![Build Status](https://secure.travis-ci.org/BlaineSch/li3_leaderboard.png?branch=master)](http://travis-ci.org/BlaineSch/li3_leaderboard)
 
 ## Installation
 

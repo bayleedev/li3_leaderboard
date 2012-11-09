@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+
+before_install:
+  - cd ../
+  - git clone git://github.com/UnionOfRAD/framework.git
+  - mv li3_leaderboard/ framework/app/libraries/li3_leaderboard
+  - cd framework
+  - git submodule update --init --recursive
+  - cd app/libraries/li3_leaderboard
+  - cp config/connections.template.php ../../config/bootstrap/connections.php
+  - cp config/libraries.template.php ../../config/bootstrap/libraries.php
+
+script: ../../../libraries/lithium/console/li3 test tests
