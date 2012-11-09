@@ -1,6 +1,6 @@
 <?php
 
-namespace li3_testLeaderboard\extensions\adapter\data\source\file;
+namespace li3_leaderboard\extensions\adapter\data\source\file;
 
 use \SplFileInfo,
 	\Exception;

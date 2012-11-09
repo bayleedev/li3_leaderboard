@@ -1,11 +1,11 @@
 <?php
 
-namespace li3_testLeaderboard\controllers;
+namespace li3_leaderboard\controllers;
 
 use lithium\template\View,
 	lithium\core\Libraries;
-use li3_testLeaderboard\models\Blame;
-use li3_testLeaderboard\models\StatsPresenter;
+use li3_leaderboard\models\Blame;
+use li3_leaderboard\models\StatsPresenter;
 
 class LeaderboardController extends \lithium\action\Controller {
 
@@ -24,7 +24,7 @@ class LeaderboardController extends \lithium\action\Controller {
 
 		$title = 'Testing Leaderboard';
 
-		$options = Libraries::get('li3_testLeaderboard');
+		$options = Libraries::get('li3_leaderboard');
 
 		$data = StatsPresenter::find('all', $options);
 

@@ -1,9 +1,9 @@
 {
-	"name": "blainesch/li3_testLeaderboard",
+	"name": "blainesch/li3_leaderboard",
 	"type": "li3-libraries",
 	"description": "A leaderboard to show off which developers are creating unit tests",
 	"keywords": ["lithium", "li3", "leaderboard", "test", "testing", "leader"],
-	"homepage": "https://github.com/BlaineSch/li3_testLeaderboard",
+	"homepage": "https://github.com/BlaineSch/li3_leaderboard",
 	"license": "The BSD License",
 	"minimum-stability": "dev",
 	"authors": [

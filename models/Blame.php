@@ -1,6 +1,6 @@
 <?php
 
-namespace li3_testLeaderboard\models;
+namespace li3_leaderboard\models;
 
 class Blame extends \lithium\data\Model {
 

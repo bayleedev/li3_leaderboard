@@ -1,9 +1,9 @@
 <?php
 
-namespace li3_testLeaderboard\models;
+namespace li3_leaderboard\models;
 
 use \li3_filesystem\models\Files;
-use li3_testLeaderboard\models\Blame;
+use li3_leaderboard\models\Blame;
 
 class StatsPresenter extends \lithium\data\Model {
 

@@ -12,5 +12,5 @@ use lithium\net\http\Router;
 Router::connect('/testLeaderboard', array(
 	'controller' => 'Leaderboard',
 	'action' => 'index',
-	'library' => 'li3_testLeaderboard',
+	'library' => 'li3_leaderboard',
 ));

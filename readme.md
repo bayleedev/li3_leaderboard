@@ -1,4 +1,4 @@
-# Test Leaderboard
+# Lithium Leaderboard
 A leaderboard to show off which developers are creating unit tests
 
 ## Installation
@@ -8,7 +8,7 @@ A leaderboard to show off which developers are creating unit tests
 {
     "require": {
         ...
-        "blainesch/li3_testLeaderboard": "dev-master"
+        "blainesch/li3_leaderboard": "dev-master"
         ...
     }
 }
@@ -19,12 +19,12 @@ php composer.phar install
 
 ### Submodule
 ~~~ bash
-git submodule add git://github.com/BlaineSch/li3_testLeaderboard.git libraries/li3_testLeaderboard
+git submodule add git://github.com/BlaineSch/li3_leaderboard.git libraries/li3_leaderboard
 ~~~
 
 ### Clone Directly
 ~~~ bash
-git clone git://github.com/BlaineSch/li3_testLeaderboard.git libraries/li3_testLeaderboard
+git clone git://github.com/BlaineSch/li3_leaderboard.git libraries/li3_leaderboard
 ~~~
 
 
@@ -35,7 +35,7 @@ In your libraries.php file:
 <?php
 // ...
 if(!lithium\core\Environment::is('production')) {
-	Libraries::add('li3_testLeaderboard', array(
+	Libraries::add('li3_leaderboard', array(
 		'paths' => array(
 			dirname(dirname(__DIR__)) . '/tests/',
 		),
