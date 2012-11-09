@@ -13,7 +13,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $options
 	 * @return array A multidimensional array.
 	 */
-	static public function _findLines($options) {
+	public static function _findLines($options) {
 		// Variables
 		$fileInfo = array();
 
@@ -57,7 +57,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $files The result of self::_findLines
 	 * @return array
 	 */
-	static public function _findBlames($files) {
+	public static function _findBlames($files) {
 		$blames = array();
 		foreach($files as $file) {
 			$blames[] = Blame::find('all', array(
@@ -76,7 +76,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $files The result of self::_findLines
 	 * @return int
 	 */
-	static public function _totalTests($files) {
+	public static function _totalTests($files) {
 		$total = 0;
 		foreach($files as $file) {
 			$total += count($file['lines']);
@@ -91,7 +91,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  int $total  result of self::_totalTests
 	 * @return array
 	 */
-	static public function _getTotalByPerson($blames, $total) {
+	public static function _getTotalByPerson($blames, $total) {
 		$totals = array();
 		foreach($blames as $blameLines) { // iterate recordsets
 			foreach($blameLines as $line) { // Iterate records
@@ -107,10 +107,18 @@ class StatsPresenter extends \lithium\data\Model {
 				'percent' => round(($count/$total)*100, 1),
 			);
 		}
-		uasort($totals, function($el, $el2) {
+		return $totals;
+	}
+
+	/**
+	 * Will sort the data based on the count of two elements
+	 * @param  array $data return of self::_getTotalByPerson
+	 * @return array
+	 */
+	public static function _sortTotals(&$data) {
+		uasort($data, function($el, $el2) {
 			return strnatcmp($el2['count'], $el['count']);
 		});
-		return $totals;
 	}
 
 	/**
@@ -131,6 +139,8 @@ class StatsPresenter extends \lithium\data\Model {
 
 		$leaderBoard['total'] = self::_totalTests($files);
 		$leaderBoard['data'] = self::_getTotalByPerson($blames, $leaderBoard['total']);
+
+		$leaderBoard['data'] = self::_sortTotals($leaderBoard['data']);
 
 		return $leaderBoard;
 
