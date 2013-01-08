@@ -10,6 +10,13 @@ before_install:
   - mv li3_leaderboard/ framework/app/libraries/li3_leaderboard
   - cd framework
   - git submodule update --init --recursive
-  - cd app/libraries/li3_leaderboard
+  - cd libraries/lithium && git pull --rebase origin master && cd ../../
+  - git clone --branch=dev git://github.com/BlaineSch/li3_quality.git app/libraries/li3_quality
+  - sed '$d' app/config/bootstrap/libraries.php > app/config/bootstrap/libraries.php.bak
+  - mv app/config/bootstrap/libraries.php.bak app/config/bootstrap/libraries.php
+  - echo "Libraries::add('li3_quality');" >> app/config/bootstrap/libraries.php
+  - echo "Libraries::add('li3_leaderboard');" >> app/config/bootstrap/libraries.php
+  - cd app
+  - alias li3="../libraries/lithium/console/li3"
 
-script: ../../../libraries/lithium/console/li3 test tests
+script: li3 test tests && li3 quality syntax --library=li3_leaderboard
