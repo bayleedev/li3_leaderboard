@@ -2,7 +2,7 @@
 
 namespace li3_leaderboard\tests\cases\models;
 
-use \li3_leaderboard\tests\Unit;
+use li3_leaderboard\tests\Unit;
 
 class StatsPresenterTest extends Unit {
 

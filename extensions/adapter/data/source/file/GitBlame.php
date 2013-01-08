@@ -2,8 +2,8 @@
 
 namespace li3_leaderboard\extensions\adapter\data\source\file;
 
-use \SplFileInfo,
-	\Exception;
+use SplFileInfo,
+	Exception;
 
 class GitBlame extends \lithium\data\source\Mock {
 
