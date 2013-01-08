@@ -105,7 +105,7 @@ class GitBlame extends \lithium\data\source\Mock {
 				if (!is_array($groupBy)) {
 					$groupBy = array($groupBy);
 				}
-				$_this->_groupBy($lines, function($key, $el) use(&$groupBy, &$hashTable) {
+				$_this->groupBy($lines, function($key, $el) use(&$groupBy, &$hashTable) {
 					$hash = null;
 					foreach ($groupBy as $item) {
 						$hash .= $el[$item];
@@ -166,7 +166,7 @@ class GitBlame extends \lithium\data\source\Mock {
 	 * @param boolean $preserveKeys If you want to preserve the keys or not.
 	 * @return mixed Nothing if called destructively, otherwise a new array.
 	 */
-	protected static function _groupBy(array &$arr, $callback, $preserveKeys = false) {
+	public static function groupBy(array &$arr, $callback, $preserveKeys = false) {
 		$newArr = array();
 		foreach ($arr as $key => &$value) {
 			$category = $callback($key, $value);

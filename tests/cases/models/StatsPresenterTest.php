@@ -24,7 +24,7 @@ class StatsPresenterTest extends Unit {
 			),
 		);
 		$class = self::$model;
-		$result = $class::_findBlames($files);
+		$result = $class::findBlames($files);
 
 		$this->assertCount(1, $result[0]);
 		$this->assertEqual('bd659387', $result[0][0]->hash);
@@ -48,7 +48,7 @@ class StatsPresenterTest extends Unit {
 		);
 		$class = self::$model;
 
-		$result = $class::_totalTests($files);
+		$result = $class::totalTests($files);
 		$expected = 6;
 
 		$this->assertEqual($expected, $result);
@@ -64,7 +64,7 @@ class StatsPresenterTest extends Unit {
 		);
 		$class = self::$model;
 
-		$result = $class::_totalTests($files);
+		$result = $class::totalTests($files);
 		$expected = 3;
 
 		$this->assertEqual($expected, $result);
@@ -79,10 +79,10 @@ class StatsPresenterTest extends Unit {
 			),
 		);
 		$class = self::$model;
-		$blames = $class::_findBlames($files);
+		$blames = $class::findBlames($files);
 		$total = 1;
 
-		$result = $class::_getTotalByPerson($blames, $total);
+		$result = $class::getTotalByPerson($blames, $total);
 		$expected = array(
 			'Blaine Schmeisser' => array(
 				'count' => $total,
@@ -113,7 +113,7 @@ class StatsPresenterTest extends Unit {
 
 		// Results
 		$result = $data;
-		$class::_sortTotals($data);
+		$class::sortTotals($data);
 		$expected = array(
 			'Tim Morgan' => array(
 				'count' => 200,

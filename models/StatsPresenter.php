@@ -13,7 +13,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $options
 	 * @return array A multidimensional array.
 	 */
-	protected static function _findLines($options) {
+	public static function findLines($options) {
 		$fileInfo = array();
 
 		foreach ($options['paths'] as $path) {
@@ -50,7 +50,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $files The result of self::_findLines
 	 * @return array
 	 */
-	protected static function _findBlames($files) {
+	public static function findBlames($files) {
 		$blames = array();
 		foreach ($files as $file) {
 			$blames[] = Blame::find('all', array(
@@ -69,7 +69,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $files The result of self::_findLines
 	 * @return int
 	 */
-	protected static function _totalTests($files) {
+	public static function totalTests($files) {
 		$total = 0;
 		foreach ($files as $file) {
 			$total += count($file['lines']);
@@ -84,7 +84,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  int $total  result of self::_totalTests
 	 * @return array
 	 */
-	protected static function _getTotalByPerson($blames, $total) {
+	public static function getTotalByPerson($blames, $total) {
 		$totals = array();
 		foreach ($blames as $blameLines) {
 			foreach ($blameLines as $line) {
@@ -109,7 +109,7 @@ class StatsPresenter extends \lithium\data\Model {
 	 * @param  array $data return of self::_getTotalByPerson
 	 * @return array
 	 */
-	protected static function _sortTotals(&$data) {
+	public static function sortTotals(&$data) {
 		uasort($data, function($el, $el2) {
 			return strnatcmp($el2['count'], $el['count']);
 		});
@@ -125,13 +125,13 @@ class StatsPresenter extends \lithium\data\Model {
 	public static function find($type, array $options = array()) {
 		$leaderBoard = array();
 
-		$files = self::_findLines($options);
-		$blames = self::_findBlames($files);
+		$files = self::findLines($options);
+		$blames = self::findBlames($files);
 
-		$leaderBoard['total'] = self::_totalTests($files);
-		$leaderBoard['data'] = self::_getTotalByPerson($blames, $leaderBoard['total']);
+		$leaderBoard['total'] = self::totalTests($files);
+		$leaderBoard['data'] = self::getTotalByPerson($blames, $leaderBoard['total']);
 
-		self::_sortTotals($leaderBoard['data']);
+		self::sortTotals($leaderBoard['data']);
 
 		return $leaderBoard;
 	}
