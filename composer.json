@@ -12,8 +12,5 @@
 			"email": "BlaineSch@gmail.com",
 			"homepage": "https://github.com/BlaineSch"
 		}
-	],
-	"require": {
-		"blainesch/li3_filesystem": "dev-master"
-	}
+	]
 }
