@@ -134,3 +134,5 @@ class StatsPresenterTest extends Unit {
 	}
 
 }
+
+?>

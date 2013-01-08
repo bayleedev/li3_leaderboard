@@ -19,3 +19,5 @@ class Blame extends \lithium\data\Model {
 	}
 
 }
+
+?>

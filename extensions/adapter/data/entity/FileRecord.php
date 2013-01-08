@@ -12,10 +12,14 @@ use BadMethodCallException,
 	SplFileObject,
 	ArrayAccess,
 	Iterator;
+use lithium\data\entity\Record;
 
-class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayAccess {
+class FileRecord extends Record implements Iterator, ArrayAccess {
 
-	protected $fileObj = null;
+	/**
+	 * Instance of the file object
+	 */
+	public $fileObj = null;
 
 	/**
 	 * Will allow you to call SplFileObject methods
@@ -31,14 +35,11 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 	 */
 	public function __call($method, $params) {
 		try {
-			// Model #1
 			return parent::__call($method, $params);
-		} catch(BadMethodCallException $e) {
-			if(method_exists('SplFileObject', $method)) {
-				// SplFileObject #2
+		} catch (BadMethodCallException $e) {
+			if (method_exists('SplFileObject', $method)) {
 				return call_user_func_array(array($this->fileObj(), $method), $params);
 			} else {
-				// Not found
 				throw $e;
 			}
 		}
@@ -46,11 +47,11 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * If the SplFileObject object has not yet been created, it will create it for you.
-	 * 
+	 *
 	 * @return SplFileObject
 	 */
 	public function fileObj() {
-		if(is_null($this->fileObj)) {
+		if (is_null($this->fileObj)) {
 			$this->fileObj = new SplFileObject($this->name);
 		}
 		return $this->fileObj;
@@ -58,6 +59,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the Iterator interface
+	 *
 	 * @link http://www.php.net/manual/en/class.iterator.php
 	 * @return mixed
 	 */
@@ -67,6 +69,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the Iterator interface
+	 *
 	 * @link http://www.php.net/manual/en/class.iterator.php
 	 * @return mixed
 	 */
@@ -76,6 +79,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the Iterator interface
+	 *
 	 * @link http://www.php.net/manual/en/class.iterator.php
 	 * @return mixed
 	 */
@@ -85,6 +89,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the Iterator interface
+	 *
 	 * @link http://www.php.net/manual/en/class.iterator.php
 	 * @return mixed
 	 */
@@ -94,6 +99,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the Iterator interface
+	 *
 	 * @link http://www.php.net/manual/en/class.iterator.php
 	 * @return mixed
 	 */
@@ -103,6 +109,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the ArrayAccess interface
+	 *
 	 * @link http://php.net/manual/en/class.arrayaccess.php
 	 * @return boolean
 	 */
@@ -122,6 +129,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the ArrayAccess interface
+	 *
 	 * @link http://php.net/manual/en/class.arrayaccess.php
 	 * @return boolean
 	 */
@@ -132,7 +140,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 		// Go to it and check validity
 		$this->fileObj()->seek($key);
-		if($this->fileObj()->valid()) {
+		if ($this->fileObj()->valid()) {
 			$value = $this->fileObj()->current();
 		}
 
@@ -144,6 +152,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the ArrayAccess interface
+	 *
 	 * @link http://php.net/manual/en/class.arrayaccess.php
 	 * @throws BadFunctionCallException
 	 * @return null
@@ -154,6 +163,7 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 	/**
 	 * Part of the ArrayAccess interface
+	 *
 	 * @link http://php.net/manual/en/class.arrayaccess.php
 	 * @throws BadFunctionCallException
 	 * @return null
@@ -164,28 +174,4 @@ class FileRecord extends \lithium\data\entity\Record implements Iterator, ArrayA
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+?>

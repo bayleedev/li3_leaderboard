@@ -14,3 +14,5 @@ Router::connect('/testLeaderboard', array(
 	'action' => 'index',
 	'library' => 'li3_leaderboard',
 ));
+
+?>

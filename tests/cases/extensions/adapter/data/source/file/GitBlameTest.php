@@ -10,9 +10,7 @@ class GitBlameTest extends Unit {
 	public static $model = 'li3_leaderboard\\models\\Blame';
 
 	public function create($data) {
-		$data += array(
-			// defaults
-		);
+		$data += array();
 		$class = self::$model;
 		$model::create($data);
 		$page->connection()->connection = new MockService(array(
@@ -28,7 +26,7 @@ class GitBlameTest extends Unit {
 				'line' => 1,
 			),
 		));
-		
+
 		$this->assertEqual(1, $blames->line);
 		$this->assertEqual('bd659387', $blames->hash);
 	}
@@ -43,10 +41,10 @@ class GitBlameTest extends Unit {
 		));
 
 		$this->assertCount(2, $blames);
-		
+
 		$this->assertEqual(1, $blames[0]->line);
 		$this->assertEqual('bd659387', $blames[0]->hash);
-		
+
 		$this->assertEqual(2, $blames[1]->line);
 		$this->assertEqual('0a7fd3e9', $blames[1]->hash);
 	}
@@ -78,7 +76,7 @@ class GitBlameTest extends Unit {
 					'line' => 1,
 				),
 			));
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->assertPattern('/GIT not installed/', $e->getMessage());
 			return;
 		}
@@ -93,7 +91,7 @@ class GitBlameTest extends Unit {
 					'line' => 1,
 				),
 			));
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->assertPattern('/File is not readable/', $e->getMessage());
 			return;
 		}
@@ -102,14 +100,15 @@ class GitBlameTest extends Unit {
 
 	public function testNoBlameData() {
 		try {
-			$file = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))) . '/mocks/mock.txt';
+			$dir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
+			$file = $dir . '/mocks/mock.txt';
 			$blames = Blame::find('first', array(
 				'conditions' => array(
 					'file' => $file,
 					'line' => 999,
 				),
 			));
-		} catch(\Exception $e) {
+		} catch (\Exception $e) {
 			$this->assertPattern('/No data found/', $e->getMessage());
 			return;
 		}
@@ -157,3 +156,5 @@ class GitBlameTest extends Unit {
 	}
 
 }
+
+?>

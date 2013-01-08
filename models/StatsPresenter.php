@@ -9,17 +9,15 @@ class StatsPresenter extends \lithium\data\Model {
 
 	/**
 	 * Finds the specific files and lines that we determine to be tests
-	 * 
+	 *
 	 * @param  array $options
 	 * @return array A multidimensional array.
 	 */
-	public static function _findLines($options) {
-		// Variables
+	protected static function _findLines($options) {
 		$fileInfo = array();
 
-		// Find lines to blame!
-		foreach($options['paths'] as $path) { // Iterate paths
-			foreach($options['files'] as $name => $prototype) { // Iterate specific file types
+		foreach ($options['paths'] as $path) {
+			foreach ($options['files'] as $name => $prototype) {
 				$files = Files::find('all', array(
 					'recursive' => true,
 					'dir' => $path,
@@ -27,19 +25,14 @@ class StatsPresenter extends \lithium\data\Model {
 						'name' => $name,
 					),
 				));
-				foreach($files as $file) { // Iterate specific files
+				foreach ($files as $file) {
 					$lines = array();
-
-					// Find files
-					foreach($file as $key => $line) { // Iterate specific lines
-						if(preg_match($prototype, $line, $matches) === 1) {
-							// Found item to blame!
-							$lines[] = $key+1; // file line(1+) and array index(0+) have an offset of 1
+					foreach ($file as $key => $line) {
+						if (preg_match($prototype, $line, $matches) === 1) {
+							$lines[] = $key + 1;
 						}
 					}
-
-					// Add to blame list!
-					if(!empty($lines)) {
+					if (!empty($lines)) {
 						$fileInfo[] = array(
 							'name' => $file->getPath() . '/' . $file->getFilename(),
 							'lines' => $lines,
@@ -53,13 +46,13 @@ class StatsPresenter extends \lithium\data\Model {
 
 	/**
 	 * Given an multidimensional array it'll find the blame for specific files and lines
-	 * 
+	 *
 	 * @param  array $files The result of self::_findLines
 	 * @return array
 	 */
-	public static function _findBlames($files) {
+	protected static function _findBlames($files) {
 		$blames = array();
-		foreach($files as $file) {
+		foreach ($files as $file) {
 			$blames[] = Blame::find('all', array(
 				'conditions' => array(
 					'file' => $file['name'],
@@ -72,13 +65,13 @@ class StatsPresenter extends \lithium\data\Model {
 
 	/**
 	 * Will give you a count of written tests.
-	 * 
+	 *
 	 * @param  array $files The result of self::_findLines
 	 * @return int
 	 */
-	public static function _totalTests($files) {
+	protected static function _totalTests($files) {
 		$total = 0;
-		foreach($files as $file) {
+		foreach ($files as $file) {
 			$total += count($file['lines']);
 		}
 		return $total;
@@ -86,25 +79,25 @@ class StatsPresenter extends \lithium\data\Model {
 
 	/**
 	 * Will aggregate the data and return a count and percent for each user.
-	 * 
+	 *
 	 * @param  array $blames result of self::_findBlames
 	 * @param  int $total  result of self::_totalTests
 	 * @return array
 	 */
-	public static function _getTotalByPerson($blames, $total) {
+	protected static function _getTotalByPerson($blames, $total) {
 		$totals = array();
-		foreach($blames as $blameLines) { // iterate recordsets
-			foreach($blameLines as $line) { // Iterate records
-				if(!isset($totals[$line->name()])) {
+		foreach ($blames as $blameLines) {
+			foreach ($blameLines as $line) {
+				if (!isset($totals[$line->name()])) {
 					$totals[$line->name()] = 0;
 				}
 				$totals[$line->name()]++;
 			}
 		}
-		foreach($totals as $person => &$count) {
+		foreach ($totals as $person => &$count) {
 			$count = array(
 				'count' => $count,
-				'percent' => round(($count/$total)*100, 1),
+				'percent' => round(($count / $total) * 100, 1),
 			);
 		}
 		return $totals;
@@ -112,29 +105,27 @@ class StatsPresenter extends \lithium\data\Model {
 
 	/**
 	 * Will sort the data based on the count of two elements
+	 *
 	 * @param  array $data return of self::_getTotalByPerson
 	 * @return array
 	 */
-	public static function _sortTotals(&$data) {
+	protected static function _sortTotals(&$data) {
 		uasort($data, function($el, $el2) {
 			return strnatcmp($el2['count'], $el['count']);
 		});
 	}
 
 	/**
-	 * Entry point for 
+	 * Entry point for
+	 *
 	 * @param  [type] $type    [description]
 	 * @param  array  $options [description]
 	 * @return [type]          [description]
 	 */
 	public static function find($type, array $options = array()) {
-
 		$leaderBoard = array();
 
-		// Get files with lines to blame
 		$files = self::_findLines($options);
-
-		// Parse files and lines and get data
 		$blames = self::_findBlames($files);
 
 		$leaderBoard['total'] = self::_totalTests($files);
@@ -143,7 +134,8 @@ class StatsPresenter extends \lithium\data\Model {
 		self::_sortTotals($leaderBoard['data']);
 
 		return $leaderBoard;
-
 	}
 
 }
+
+?>

@@ -5,13 +5,12 @@ namespace li3_leaderboard\tests\cases\models;
 use lithium\test\Unit;
 use li3_leaderboard\models\Files;
 
-require_once(__DIR__ . '/../../../../../config/bootstrap/connections.php');
-
 class FileTest extends Unit {
 
 	public $base;
 
 	public function setUp() {
+		require_once __DIR__ . '/../../../../../config/bootstrap/connections.php';
 		$this->base = __DIR__ . '/../../mocks/directoryMock/';
 	}
 
@@ -152,7 +151,7 @@ class FileTest extends Unit {
 		));
 		try {
 			$file[0] = 'foobar';
-		} catch(\BadFunctionCallException $e) {
+		} catch (\BadFunctionCallException $e) {
 			$this->assertTrue(true);
 			return;
 		}
@@ -172,7 +171,7 @@ class FileTest extends Unit {
 		));
 		try {
 			unset($file[0]);
-		} catch(\BadFunctionCallException $e) {
+		} catch (\BadFunctionCallException $e) {
 			$this->assertTrue(true);
 			return;
 		}
@@ -267,3 +266,5 @@ class FileTest extends Unit {
 	}
 
 }
+
+?>

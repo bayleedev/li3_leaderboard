@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * A mock model that stores its params as $self->_find_params and
  * returns whatever is in $self->_data
  */
@@ -93,3 +93,5 @@ class MockService {
 		return isset($this->resources[$path]) ? $this->resources[$path] : null;
 	}
 }
+
+?>

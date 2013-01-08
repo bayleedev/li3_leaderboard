@@ -78,3 +78,5 @@ Connections::add('Filesystem', array(
 		'base'    => __DIR__,
 	),
 ));
+
+?>
