@@ -2,8 +2,8 @@
 
 namespace li3_leaderboard\extensions\adapter\data\source\file;
 
-use DirectoryIterator,
-	ArrayIterator;
+use DirectoryIterator;
+use ArrayIterator;
 
 class Filesystem extends \lithium\data\source\Mock {
 
@@ -20,10 +20,10 @@ class Filesystem extends \lithium\data\source\Mock {
 	 * @var  array
 	 */
 	protected $_classes = array(
-	    'service' => 'lithium\net\http\Service',
-	    'entity'  => 'li3_leaderboard\extensions\adapter\data\entity\FileRecord',
-	    'set'     => 'lithium\data\collection\RecordSet',
-	    'relationship' => 'lithium\data\model\Relationship'
+		'service' => 'lithium\net\http\Service',
+		'entity'  => 'li3_leaderboard\extensions\adapter\data\entity\FileRecord',
+		'set'     => 'lithium\data\collection\RecordSet',
+		'relationship' => 'lithium\data\model\Relationship'
 	);
 
 	/**

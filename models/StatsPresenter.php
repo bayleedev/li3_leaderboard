@@ -2,8 +2,8 @@
 
 namespace li3_leaderboard\models;
 
-use li3_leaderboard\models\Files,
-	li3_leaderboard\models\Blame;
+use li3_leaderboard\models\Files;
+use li3_leaderboard\models\Blame;
 
 class StatsPresenter extends \lithium\data\Model {
 

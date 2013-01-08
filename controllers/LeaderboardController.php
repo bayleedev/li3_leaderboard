@@ -2,10 +2,10 @@
 
 namespace li3_leaderboard\controllers;
 
-use lithium\template\View,
-	lithium\core\Libraries;
-use li3_leaderboard\models\Blame,
-	li3_leaderboard\models\StatsPresenter;
+use lithium\template\View;
+use lithium\core\Libraries;
+use li3_leaderboard\models\Blame;
+use li3_leaderboard\models\StatsPresenter;
 
 class LeaderboardController extends \lithium\action\Controller {
 

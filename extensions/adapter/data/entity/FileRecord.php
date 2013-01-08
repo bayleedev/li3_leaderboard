@@ -8,10 +8,10 @@
 
 namespace li3_leaderboard\extensions\adapter\data\entity;
 
-use BadMethodCallException,
-	SplFileObject,
-	ArrayAccess,
-	Iterator;
+use BadMethodCallException;
+use SplFileObject;
+use ArrayAccess;
+use Iterator;
 use lithium\data\entity\Record;
 
 class FileRecord extends Record implements Iterator, ArrayAccess {
@@ -114,14 +114,11 @@ class FileRecord extends Record implements Iterator, ArrayAccess {
 	 * @return boolean
 	 */
 	public function offsetExists($key) {
-		// Cache curent key
 		$originalKey = $this->key();
 
-		// Go to it and check validity
 		$this->fileObj()->seek($key);
 		$exists = $this->fileObj()->valid();
 
-		// Rewind to originalKey
 		$this->fileObj()->seek($originalKey);
 
 		return $exists;
@@ -134,17 +131,14 @@ class FileRecord extends Record implements Iterator, ArrayAccess {
 	 * @return boolean
 	 */
 	public function offsetGet($key) {
-		// Cache curent key
 		$originalKey = $this->key();
 		$value = null;
 
-		// Go to it and check validity
 		$this->fileObj()->seek($key);
 		if ($this->fileObj()->valid()) {
 			$value = $this->fileObj()->current();
 		}
 
-		// Rewind to originalKey
 		$this->fileObj()->seek($originalKey);
 
 		return $value;

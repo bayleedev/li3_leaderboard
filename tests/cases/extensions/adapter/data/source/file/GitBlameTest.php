@@ -2,8 +2,8 @@
 
 namespace li3_leaderboard\tests\cases\extensions\adapter\data\source\file;
 
-use li3_leaderboard\tests\Unit,
-	li3_leaderboard\models\Blame;
+use li3_leaderboard\tests\Unit;
+use li3_leaderboard\models\Blame;
 
 class GitBlameTest extends Unit {
 

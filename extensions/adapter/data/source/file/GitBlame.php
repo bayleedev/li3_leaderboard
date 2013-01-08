@@ -2,8 +2,8 @@
 
 namespace li3_leaderboard\extensions\adapter\data\source\file;
 
-use SplFileInfo,
-	Exception;
+use SplFileInfo;
+use Exception;
 
 class GitBlame extends \lithium\data\source\Mock {
 
@@ -16,10 +16,10 @@ class GitBlame extends \lithium\data\source\Mock {
 	 * Classes to use for creation of pages
 	 */
 	protected $_classes = array(
-	    'service' => 'lithium\net\http\Service',
-	    'entity'  => 'lithium\data\entity\Document',
-	    'set'     => 'lithium\data\collection\DocumentSet',
-	    'relationship' => 'lithium\data\model\Relationship'
+		'service' => 'lithium\net\http\Service',
+		'entity'  => 'lithium\data\entity\Document',
+		'set'     => 'lithium\data\collection\DocumentSet',
+		'relationship' => 'lithium\data\model\Relationship'
 	);
 
 	/**
