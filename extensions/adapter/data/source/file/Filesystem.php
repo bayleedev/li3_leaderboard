@@ -23,7 +23,8 @@ class Filesystem extends \lithium\data\source\Mock {
 		'service' => 'lithium\net\http\Service',
 		'entity'  => 'li3_leaderboard\extensions\adapter\data\entity\FileRecord',
 		'set'     => 'lithium\data\collection\RecordSet',
-		'relationship' => 'lithium\data\model\Relationship'
+		'relationship' => 'lithium\data\model\Relationship',
+		'schema'  => 'lithium\data\DocumentSchema',
 	);
 
 	/**

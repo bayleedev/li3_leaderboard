@@ -19,7 +19,8 @@ class GitBlame extends \lithium\data\source\Mock {
 		'service' => 'lithium\net\http\Service',
 		'entity'  => 'lithium\data\entity\Document',
 		'set'     => 'lithium\data\collection\DocumentSet',
-		'relationship' => 'lithium\data\model\Relationship'
+		'relationship' => 'lithium\data\model\Relationship',
+		'schema'  => 'lithium\data\DocumentSchema',
 	);
 
 	/**
