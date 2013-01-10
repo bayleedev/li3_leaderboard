@@ -5,7 +5,7 @@ namespace li3_leaderboard\tests\cases\models;
 use lithium\test\Unit;
 use li3_leaderboard\models\Files;
 
-class FileTest extends Unit {
+class FilesTest extends Unit {
 
 	public $base;
 
