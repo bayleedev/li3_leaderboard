@@ -2,8 +2,6 @@
 
 namespace li3_leaderboard\tests\mocks\net\http;
 
-use lithium\data\collection\DocumentSet;
-
 /**
  * A mock model that stores its params as $self->_find_params and
  * returns whatever is in $self->_data
