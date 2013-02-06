@@ -17,6 +17,5 @@ before_install:
   - echo "Libraries::add('li3_quality');" >> app/config/bootstrap/libraries.php
   - echo "Libraries::add('li3_leaderboard');" >> app/config/bootstrap/libraries.php
   - cd app
-  - alias li3="../libraries/lithium/console/li3"
 
-script: li3 test tests && li3 quality syntax --library=li3_leaderboard
+script: ../libraries/lithium/console/li3 test libraries/li3_leaderboard/tests && ../libraries/lithium/console/li3 quality syntax --library=li3_leaderboard
